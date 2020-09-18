@@ -20,10 +20,9 @@ fs = 1e3; %Hz
 window_length = 0.1; %s
 window_overlap = 0.05; %s
 % Load in Trained Model
-load('training_feat_mats.mat')
-s1_f_model1 = training_feat_mats{1};
-s2_f_model1 = training_feat_mats{2};
-s3_f_model1 = training_feat_mats{3};
+load('s1_f_model1.mat')
+load('s2_f_model1.mat')
+load('s3_f_model1.mat')
 % Get windowed features
 s1_featMat_leaderboard = getWindowedFeats(test_ecog{1}, fs, window_length, window_overlap);
 s2_featMat_leaderboard = getWindowedFeats(test_ecog{2}, fs, window_length, window_overlap);
@@ -61,4 +60,5 @@ predicted_dg{1} = s1_yhat_leaderboard_interp;
 predicted_dg{2} = s2_yhat_leaderboard_interp;
 predicted_dg{3} = s3_yhat_leaderboard_interp;
 predicted_dg = predicted_dg.';
+save('predicted_dg.mat', 'predicted_dg')
 end
